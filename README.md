@@ -1,14 +1,8 @@
-# Biochem Study Kit
+# The Human Digestive System: Study Guide
 
-A study site for the Biology biochemistry unit: macromolecules and enzymes.
+A study site for the digestion unit. It has two sections:
 
-**Open it:** https://biologyguide.github.io/unit1/
+- **Learn**: the path food takes, mechanical vs. chemical digestion, a labeled diagram of the whole system, and every organ's structure, function, mechanical digestion, chemical digestion, and other facts. Includes an epiglottis diagram you can switch between breathing and swallowing, a villus diagram, enzymes and chemicals, and key words.
+- **Practice test**: multiple-choice and diagram questions with instant feedback and a review of missed questions.
 
-Built from four class slide decks (Intro to Macromolecules, Carbohydrates & Lipids, Proteins & Nucleic Acids, Enzymes) and the matching packet pages.
-
-- **Learn:** every slide explained in plain words, with diagrams, memory tricks, common mix-ups and tap-to-reveal packet answers
-- **Flashcards:** 83 cards with Got it / Still learning sorting
-- **Practice test:** 77 multiple-choice and true/false questions with explanations, plus written-response practice with model answers
-- **Lab:** DNA pairing trainer, organic-or-not, macromolecule sorter, protein jobs, sugar-or-enzyme (-ose/-ase), what-does-it-break-down, and an enzyme temperature/pH simulator
-
-The whole site is the single file `index.html`. Progress is saved in your own browser only.
+It's a single self-contained `index.html`. Open it in any browser, or publish it with GitHub Pages (Settings → Pages → Deploy from a branch → `main`, `/ (root)`).
