@@ -206,7 +206,7 @@ h1.big{font-size:60px}
 // ---------- path food takes, in the anatomy art's coordinates ----------
 var PATH=[[250,140],[280,150],[297,165],[299,205],[300,260],[301,330],[304,400],[312,440],[322,462],[355,490],[335,512],[292,505],
 [245,525],[245,560],[280,570],[324,545],[350,600],[380,625],[340,650],[290,640],[300,690],[248,690],[224,708],[205,670],[202,630],[204,590],[214,553],
-[250,568],[295,578],[340,572],[380,548],[403,535],[409,575],[408,625],[404,675],[395,708],[372,730],[338,738],[310,735],[298,750],[297,775],[297,798],[297,840]];
+[250,568],[295,578],[340,572],[380,548],[403,527],[405,565],[403,610],[399,650],[390,685],[375,708],[350,721],[322,730],[300,740],[297,760],[297,780],[297,798],[297,840]];
 
 // ---------- character ----------
 var FACE='';
@@ -319,20 +319,20 @@ var SCENES=[
         F("t-use","<b>Building and storage:</b> fatty acids and glycerol build cell membranes and store energy."),
         F("t-info","Bonus: calcium from the cheese and milk builds bones and teeth.")],
  board:"Cell close-up. Glucose powers mitochondria; amino acids build proteins; fats build membranes."},
-{k:"Chapter 11 · Large intestine", t:"The Large Intestine", cam:[305,640,320], at:35, form:"waste", formFrom:"tiny", hl:["large"],
+{k:"Chapter 11 · Large intestine", t:"The Large Intestine", cam:[305,640,320], at:34, form:"waste", formFrom:"tiny", hl:["large"],
  labels:[["large intestine (colon)",204,640,280,505],["rectum",298,760,380,775]],
  story:"What's left (water, fiber and undigested bits) moves into the <b>large intestine</b>. It's about 6 feet long and 3 inches wide. <b>Digestion is already finished</b> by this point.",
  facts:[F("t-abs","Absorbs <b>water and salts</b> back into the blood, turning liquid waste into solid feces."),
         F("t-info","Helpful <b>bacteria</b> ferment leftovers and make vitamins like vitamin K."),
         F("t-mech","Slow muscle contractions move the waste along over 12 to 36 hours.")],
  board:"Large intestine. Water and salts are absorbed and waste becomes solid."},
-{k:"Chapter 12 · Rectum and anus", t:"The Rectum and Anus", cam:[300,760,170], at:42, form:"waste", hl:["rectum","anus"],
+{k:"Chapter 12 · Rectum and anus", t:"The Rectum and Anus", cam:[300,760,170], at:43, form:"waste", hl:["rectum","anus"],
  labels:[["rectum",298,760,350,735],["anus",297,793,250,812]],
  story:"Feces is stored in the <b>rectum</b> until it's time to go. Sphincter muscles in the <b>anus</b> control when the waste leaves the body.",
  facts:[F("t-info","Mac's useful parts already became energy, new proteins and cell membranes. Only the leftovers leave."),
         F("t-info","Total trip time: about 24 to 72 hours, mouth to anus.")],
  board:"Rectum and anus. The leftovers leave the body; the rest of Mac stays as part of you."},
-{k:"Review", t:"Review", close:"recap", cam:[330,400,830], at:42, form:"waste",
+{k:"Review", t:"Review", close:"recap", cam:[330,400,830], at:43, form:"waste",
  story:"Mac went from a cheesy noodle to glucose, amino acids, glycerol and fatty acids, and then into your cells for energy, growth and repair.",
  facts:[F("t-info","<b>Recipe and nutrition:</b> Pillsbury Kitchens, “Classic Baked Macaroni and Cheese.”"),
         F("t-info","<b>Organ illustrations:</b> Mariana Ruiz (LadyofHats), Wikimedia Commons, public domain."),
@@ -382,7 +382,7 @@ var CUM=[0];
 // camera + character tween
 var cam={x:330,y:400,w:830}, pos=PATH[0].slice(), atIdx=0, raf=0;
 function applyView(){body.setAttribute("viewBox",(cam.x-cam.w/2)+" "+(cam.y-cam.w/2)+" "+cam.w+" "+cam.w);
-  var s=Math.min(cam.w*0.075,40)/24; charG.setAttribute("transform","translate("+pos[0]+" "+pos[1]+") scale("+s+")");}
+  var s=Math.min(cam.w*0.06,34)/24; charG.setAttribute("transform","translate("+pos[0]+" "+pos[1]+") scale("+s+")");}
 function ease(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;}
 var posL=0;
 function travel(target,toCam,instant){
