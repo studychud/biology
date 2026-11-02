@@ -29,7 +29,7 @@ html,body{margin:0;height:100%;background:#2a1017;overflow:hidden;font-family:va
 #lbls.show g{opacity:1}
 #lbls text{font-family:var(--f-body);font-weight:700;fill:var(--ink);paint-order:stroke;stroke:#fffdf8;stroke-linejoin:round;text-anchor:middle}
 #lbls line{stroke:var(--ink);opacity:.7}
-#route{fill:none;stroke:#f2b33d;stroke-linecap:round;stroke-linejoin:round;opacity:0}
+#route{fill:none;stroke:#d98e12;stroke-linecap:round;stroke-linejoin:round;opacity:0}
 #route.draw{opacity:1;animation:draw 3.5s ease-in-out forwards}
 @keyframes draw{from{stroke-dashoffset:var(--len)}to{stroke-dashoffset:0}}
 
@@ -142,7 +142,7 @@ h1.big{font-size:60px}
       <g class="art"></g>
       <rect class="veil" x="-300" y="-300" width="1400" height="1500"/>
       <g class="spot"></g>
-      <path id="route" stroke-width="6" stroke-dasharray="14 10"/>
+      <path id="route" stroke-width="6"/>
       <g id="lbls"></g>
       <g id="char"><g class="cin"></g></g>
     </svg>
@@ -205,8 +205,8 @@ h1.big{font-size:60px}
 "use strict";
 // ---------- path food takes, in the anatomy art's coordinates ----------
 var PATH=[[250,140],[280,150],[297,165],[299,205],[300,260],[301,330],[304,400],[312,440],[322,462],[355,490],[335,512],[292,505],
-[245,525],[245,560],[280,570],[324,545],[350,600],[380,625],[340,650],[290,640],[300,690],[250,690],[205,700],[198,620],[205,575],
-[300,575],[395,570],[410,630],[400,700],[360,735],[300,740],[297,765],[297,795],[297,840]];
+[245,525],[245,560],[280,570],[324,545],[350,600],[380,625],[340,650],[290,640],[300,690],[248,690],[224,708],[205,670],[202,630],[204,590],[214,553],
+[250,568],[295,578],[340,572],[380,548],[403,535],[409,575],[408,625],[404,675],[395,708],[372,730],[338,738],[310,735],[298,750],[297,775],[297,798],[297,840]];
 
 // ---------- character ----------
 var FACE='';
@@ -232,7 +232,7 @@ var SCENES=[
         F("t-hyd","These are big molecules (polymers). Mac must be broken into small monomers before the body can use him.")],
  board:"Mac and the recipe. The macromolecules in mac and cheese and which ingredients give them."},
 {k:"Chapter 2 · The map", t:"The Digestive Path", cam:[330,400,830], at:0, form:"mac", route:true,
- labels:[["mouth",250,147,110,147],["esophagus",298,330,470,330],["liver",232,445,110,420],["gallbladder",238,483,110,480],["stomach",372,470,520,450],["pancreas",380,506,530,510],["small intestine",330,660,560,660],["large intestine",204,640,80,640],["rectum",298,760,140,760],["anus",297,793,450,800]],
+ labels:[["mouth",250,147,110,147],["esophagus",298,330,470,330],["liver",232,445,110,420],["gallbladder",238,483,110,480],["stomach",372,470,520,450],["pancreas",380,506,530,510],["small intestine",330,660,560,660],["large intestine",204,640,80,640],["rectum",298,760,140,760],["anus",297,793,460,770]],
  story:"Mac will travel the whole GI tract in order: <b>mouth → esophagus → stomach → small intestine → large intestine → rectum → anus</b>. The trip takes about 1 to 3 days.",
  facts:[F("t-help","The <b>liver, gallbladder, and pancreas</b> are accessory organs. They help, but food never passes through them."),
         F("t-mech","<b>Mechanical digestion:</b> physically breaking or mixing food into smaller pieces. The molecules stay the same."),
@@ -319,20 +319,20 @@ var SCENES=[
         F("t-use","<b>Building and storage:</b> fatty acids and glycerol build cell membranes and store energy."),
         F("t-info","Bonus: calcium from the cheese and milk builds bones and teeth.")],
  board:"Cell close-up. Glucose powers mitochondria; amino acids build proteins; fats build membranes."},
-{k:"Chapter 11 · Large intestine", t:"The Large Intestine", cam:[305,640,320], at:28, form:"waste", formFrom:"tiny", hl:["large"],
- labels:[["large intestine (colon)",204,640,195,500],["rectum",298,760,380,775]],
+{k:"Chapter 11 · Large intestine", t:"The Large Intestine", cam:[305,640,320], at:35, form:"waste", formFrom:"tiny", hl:["large"],
+ labels:[["large intestine (colon)",204,640,280,505],["rectum",298,760,380,775]],
  story:"What's left (water, fiber and undigested bits) moves into the <b>large intestine</b>. It's about 6 feet long and 3 inches wide. <b>Digestion is already finished</b> by this point.",
  facts:[F("t-abs","Absorbs <b>water and salts</b> back into the blood, turning liquid waste into solid feces."),
         F("t-info","Helpful <b>bacteria</b> ferment leftovers and make vitamins like vitamin K."),
         F("t-mech","Slow muscle contractions move the waste along over 12 to 36 hours.")],
  board:"Large intestine. Water and salts are absorbed and waste becomes solid."},
-{k:"Chapter 12 · Rectum and anus", t:"The Rectum and Anus", cam:[300,760,170], at:33, form:"waste", hl:["rectum","anus"],
+{k:"Chapter 12 · Rectum and anus", t:"The Rectum and Anus", cam:[300,760,170], at:42, form:"waste", hl:["rectum","anus"],
  labels:[["rectum",298,760,350,735],["anus",297,793,250,812]],
  story:"Feces is stored in the <b>rectum</b> until it's time to go. Sphincter muscles in the <b>anus</b> control when the waste leaves the body.",
  facts:[F("t-info","Mac's useful parts already became energy, new proteins and cell membranes. Only the leftovers leave."),
         F("t-info","Total trip time: about 24 to 72 hours, mouth to anus.")],
  board:"Rectum and anus. The leftovers leave the body; the rest of Mac stays as part of you."},
-{k:"Review", t:"Review", close:"recap", cam:[330,400,830], at:33, form:"waste",
+{k:"Review", t:"Review", close:"recap", cam:[330,400,830], at:42, form:"waste",
  story:"Mac went from a cheesy noodle to glucose, amino acids, glycerol and fatty acids, and then into your cells for energy, growth and repair.",
  facts:[F("t-info","<b>Recipe and nutrition:</b> Pillsbury Kitchens, “Classic Baked Macaroni and Cheese.”"),
         F("t-info","<b>Organ illustrations:</b> Mariana Ruiz (LadyofHats), Wikimedia Commons, public domain."),
@@ -369,27 +369,31 @@ function setLabels(list,w){
   });
 }
 var routeEl=$("#route");
-(function(){var d="M"+PATH.map(function(p){return p.join(" ");}).join("L");routeEl.setAttribute("d",d);var L=routeEl.getTotalLength();routeEl.style.setProperty("--len",L);routeEl.setAttribute("stroke-dasharray","14 10");routeEl.style.strokeDasharray=L+" "+L;})();
+var CUM=[0];
+(function(){
+  var P=PATH,d="M"+P[0].join(" "),tmp=document.createElementNS(NS,"path");body.appendChild(tmp);
+  for(var i=0;i<P.length-1;i++){var p0=P[i-1]||P[i],p1=P[i],p2=P[i+1],p3=P[i+2]||p2;
+    var c1=[p1[0]+(p2[0]-p0[0])/6,p1[1]+(p2[1]-p0[1])/6],c2=[p2[0]-(p3[0]-p1[0])/6,p2[1]-(p3[1]-p1[1])/6];
+    var seg="C"+c1.join(" ")+" "+c2.join(" ")+" "+p2.join(" ");d+=seg;
+    tmp.setAttribute("d","M"+p1.join(" ")+seg);CUM.push(CUM[i]+tmp.getTotalLength());}
+  body.removeChild(tmp);
+  routeEl.setAttribute("d",d);var L=routeEl.getTotalLength();routeEl.style.setProperty("--len",L);routeEl.style.strokeDasharray=L+" "+L;})();
 
 // camera + character tween
 var cam={x:330,y:400,w:830}, pos=PATH[0].slice(), atIdx=0, raf=0;
 function applyView(){body.setAttribute("viewBox",(cam.x-cam.w/2)+" "+(cam.y-cam.w/2)+" "+cam.w+" "+cam.w);
   var s=Math.min(cam.w*0.075,40)/24; charG.setAttribute("transform","translate("+pos[0]+" "+pos[1]+") scale("+s+")");}
 function ease(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;}
+var posL=0;
 function travel(target,toCam,instant){
   cancelAnimationFrame(raf);
-  var pts=[];
-  if(!instant&&target>atIdx){pts=[pos.slice()];for(var i=atIdx+1;i<=target;i++)pts.push(PATH[i]);}
-  else pts=[pos.slice(),PATH[target]];
-  var segs=[],tot=0;for(var j=1;j<pts.length;j++){var d=Math.hypot(pts[j][0]-pts[j-1][0],pts[j][1]-pts[j-1][1]);segs.push(d);tot+=d;}
-  var c0={x:cam.x,y:cam.y,w:cam.w},dur=instant?0:Math.min(3200,Math.max(1300,tot*6)),t0=performance.now();
+  var L1=CUM[target],L0=(instant||target<atIdx)?L1:posL;
+  var c0={x:cam.x,y:cam.y,w:cam.w},dur=instant?0:Math.min(3400,Math.max(1300,(L1-L0)*6)),t0=performance.now();
   atIdx=target;
   function step(now){
     var t=dur?Math.min(1,(now-t0)/dur):1,e=ease(t);
     cam.x=c0.x+(toCam[0]-c0.x)*e;cam.y=c0.y+(toCam[1]-c0.y)*e;cam.w=c0.w+(toCam[2]-c0.w)*e;
-    var dist=tot*e,k=0;while(k<segs.length-1&&dist>segs[k]){dist-=segs[k];k++;}
-    var f=segs[k]?Math.min(1,dist/segs[k]):1;
-    pos=[pts[k][0]+(pts[k+1][0]-pts[k][0])*f,pts[k][1]+(pts[k+1][1]-pts[k][1])*f];
+    posL=L0+(L1-L0)*e;var pt=routeEl.getPointAtLength(posL);pos=[pt.x,pt.y];
     applyView();
     if(t<1)raf=requestAnimationFrame(step);else lbls.classList.add("show");
   }
@@ -509,20 +513,59 @@ var CLOSE={
    t=t.replace('viewBox="0 0 430 320"','viewBox="0 -20 430 340" width="900" height="712"').replace(/<\/svg>\s*$/,ps+"</svg>");
    return '<div style="padding:30px 10px 0">'+t+'</div><div class="vlegend"><div><span style="background:#4a90d9"></span><b>glucose</b> → capillaries → blood</div><div><span style="background:#3aa36b"></span><b>amino acids</b> → capillaries → blood</div><div><span style="background:#f2c230"></span><b>fatty acids and glycerol</b> → lacteal → lymph</div></div>';},
  cell:function(){
-   var mito=function(x,y,rot){return '<g transform="translate('+x+' '+y+') rotate('+rot+')"><ellipse rx="78" ry="38" fill="#f4a259" stroke="#b5651d" stroke-width="4"/><path d="M-60 0l12-22 12 40 12-40 12 40 12-40 12 40 12-40 12 22" fill="none" stroke="#b5651d" stroke-width="3" stroke-linejoin="round"/></g>';};
-   var ribo="",r=rand(11);for(var i=0;i<26;i++){var a=r()*Math.PI*2,d=110+r()*40;ribo+='<circle cx="'+(520+Math.cos(a)*d).toFixed(0)+'" cy="'+(430+Math.sin(a)*d).toFixed(0)+'" r="5" fill="#5b2c8f"/>';}
-   var mv=function(col,path,b,dur){return '<circle r="9" fill="'+col+'" stroke="#fff" stroke-width="2"><animateMotion dur="'+(dur||3)+'s" begin="'+b+'s" repeatCount="indefinite" path="'+path+'"/></circle>';};
-   var ps="";for(var k=0;k<3;k++){ps+=mv("#4a90d9","M85 120C150 140 220 200 300 300",k);ps+=mv("#3aa36b","M85 450C200 420 380 330 640 330",k+.5);ps+=mv("#f2c230","M85 700C200 740 360 760 470 755",k+.3);}
-   return '<svg viewBox="0 0 920 900" width="920" height="900">'+
-   '<rect x="50" y="40" width="70" height="820" rx="35" fill="#e46a6a"/><rect x="62" y="40" width="14" height="820" fill="#f5a3a3" opacity=".6"/><text transform="translate(40 450) rotate(-90)" text-anchor="middle" class="cl-s">capillary (blood)</text>'+
-   '<ellipse cx="510" cy="450" rx="350" ry="320" fill="#fde9e4" stroke="#c66a6a" stroke-width="10"/><ellipse cx="510" cy="450" rx="335" ry="305" fill="none" stroke="#e6a7a0" stroke-width="3"/>'+
-   '<circle cx="520" cy="430" r="92" fill="#dcc8ea" stroke="#8a5fa8" stroke-width="4"/><circle cx="545" cy="410" r="26" fill="#a27fc0"/>'+ribo+
-   mito(320,300,-25)+mito(690,610,20)+mito(320,600,15)+ps+
-   '<g class="pulse"><path d="M300 250l10 22 24 2-18 16 6 24-22-13-22 13 6-24-18-16 24-2z" fill="#ffd400" stroke="#c99a1a" stroke-width="2"/></g>'+
-   '<g><text class="cl-t" x="300" y="200" text-anchor="middle">mitochondria → ATP (energy)</text>'+
-   '<text class="cl-t" x="700" y="300" text-anchor="middle">ribosomes → new proteins</text>'+
-   '<text class="cl-t" x="520" y="545" text-anchor="middle">nucleus</text>'+
-   '<text class="cl-t" x="510" y="830" text-anchor="middle">cell membrane ← fatty acids</text></g></svg>';},
+   var r=rand(5),i;
+   // blood cells flowing in the capillary
+   var rbc="";for(i=0;i<7;i++)rbc+='<ellipse rx="17" ry="11" fill="#c8323c" stroke="#9c1f2a" stroke-width="2"><animateMotion dur="5s" begin="-'+(i*5/7).toFixed(2)+'s" repeatCount="indefinite" path="M78 -30V930"/></ellipse>';
+   // rough ER arcs around the nucleus, studded with ribosomes
+   var er="",ribo="";
+   [128,152,176].forEach(function(R,k){var a0=-1.2,a1=1.25,cx=575,cy=400;
+     er+='<path d="M'+(cx+R*Math.cos(a0)).toFixed(1)+' '+(cy+R*Math.sin(a0)).toFixed(1)+'A'+R+' '+R+' 0 0 1 '+(cx+R*Math.cos(a1)).toFixed(1)+' '+(cy+R*Math.sin(a1)).toFixed(1)+'" fill="none" stroke="#d9c1ea" stroke-width="13" stroke-linecap="round"/>';
+     for(var a=a0+.08;a<a1;a+=.17){ribo+='<circle cx="'+(cx+(R+8)*Math.cos(a)).toFixed(1)+'" cy="'+(cy+(R+8)*Math.sin(a)).toFixed(1)+'" r="3.6" fill="#5b2c8f"/>';}});
+   var mito=function(x,y,rot,s){var cr="";for(var c=-60;c<=60;c+=20)cr+='<path d="M'+c+' '+(c%40?-31:31)+'Q'+(c+10)+' 0 '+c+' '+(c%40?31:-31)+'" fill="none" stroke="#c0661c" stroke-width="4" stroke-linecap="round"/>';
+     return '<g transform="translate('+x+' '+y+') rotate('+rot+') scale('+s+')"><ellipse rx="96" ry="48" fill="url(#mitoG)" stroke="#a5531a" stroke-width="4"/><ellipse rx="84" ry="37" fill="#fde2bf"/>'+cr+'</g>';};
+   var mv=function(fill,path,b,dur,rr){return '<circle r="'+(rr||8)+'" fill="'+fill+'" stroke="#fff" stroke-width="2" opacity="0"><animateMotion dur="'+dur+'s" begin="'+b+'s" repeatCount="indefinite" path="'+path+'"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.1;.85;1" dur="'+dur+'s" begin="'+b+'s" repeatCount="indefinite"/></circle>';};
+   var flows="";
+   for(i=0;i<4;i++){
+     flows+=mv("#4a90d9","M92 250C170 230 230 240 300 262",i*.9,3.6);
+     flows+=mv(["#3aa36b","#e58e26","#9b59b6","#e74c3c"][i],"M92 470C250 520 520 560 700 520",i*.9+.3,4,7);
+     flows+=mv("#f2c230","M92 690C170 720 240 740 300 700",i*.9+.6,3.6);}
+   // ATP made by the mitochondrion
+   var atp="";for(i=0;i<3;i++)atp+='<g opacity="0"><rect x="-24" y="-13" width="48" height="26" rx="13" fill="#ffd400" stroke="#c99a1a" stroke-width="2"/><text y="6" text-anchor="middle" font-size="15" font-weight="700" fill="#5a4300">ATP</text><animateMotion dur="3.6s" begin="'+(1.2+i*1.2)+'s" repeatCount="indefinite" path="M370 230C400 190 430 160 470 130"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.15;.7;1" dur="3.6s" begin="'+(1.2+i*1.2)+'s" repeatCount="indefinite"/></g>';
+   // protein chain growing off a ribosome
+   var cols=["#3aa36b","#e58e26","#9b59b6","#e74c3c","#3aa36b","#e58e26","#9b59b6"],prot="";
+   for(i=0;i<7;i++){var t=(.08+i*.1).toFixed(2);prot+='<circle cx="'+(718+i*20)+'" cy="'+(560+Math.sin(i*1.1)*10).toFixed(1)+'" r="9" fill="'+cols[i]+'" stroke="#fff" stroke-width="2"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;'+t+';'+(+t+.04).toFixed(2)+';.92;1" dur="6s" repeatCount="indefinite"/></circle>';}
+   return '<svg viewBox="0 0 920 900" width="920" height="900"><defs>'+
+   '<radialGradient id="cytoG" cx=".45" cy=".4" r=".7"><stop offset="0" stop-color="#fff7f3"/><stop offset="1" stop-color="#f9d9cf"/></radialGradient>'+
+   '<radialGradient id="nucG" cx=".4" cy=".35" r=".75"><stop offset="0" stop-color="#efe2f7"/><stop offset="1" stop-color="#b996d4"/></radialGradient>'+
+   '<linearGradient id="mitoG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f7b56c"/><stop offset="1" stop-color="#e48a35"/></linearGradient>'+
+   '<radialGradient id="fatG" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#fff3b0"/><stop offset="1" stop-color="#eec23a"/></radialGradient>'+
+   '<linearGradient id="capG" x1="0" x2="1"><stop offset="0" stop-color="#f19a9a"/><stop offset=".5" stop-color="#f8c4c0"/><stop offset="1" stop-color="#f19a9a"/></linearGradient></defs>'+
+   // capillary
+   '<rect x="44" y="-10" width="68" height="920" fill="url(#capG)"/><path d="M44 -10V910M112 -10V910" stroke="#d26c6c" stroke-width="4"/>'+rbc+
+   // cell membrane (bilayer look) and cytoplasm
+   '<ellipse cx="530" cy="420" rx="360" ry="335" fill="url(#cytoG)"/>'+
+   '<ellipse cx="530" cy="420" rx="360" ry="335" fill="none" stroke="#e39a90" stroke-width="16"/>'+
+   '<ellipse cx="530" cy="420" rx="360" ry="335" fill="none" stroke="#fff" stroke-width="5" stroke-dasharray="1 9" stroke-linecap="round"/>'+
+   er+ribo+
+   '<circle cx="575" cy="400" r="100" fill="url(#nucG)" stroke="#8a5fa8" stroke-width="5"/><circle cx="600" cy="378" r="32" fill="#8d64b0" opacity=".85"/>'+
+   mito(300,262,-12,1)+mito(470,640,18,.75)+mito(640,690,-20,.6)+
+   '<circle cx="290" cy="560" r="36" fill="url(#fatG)" stroke="#c99a1a" stroke-width="3"><animate attributeName="r" values="30;46;30" dur="7.2s" repeatCount="indefinite"/></circle>'+
+   flows+atp+prot+
+   // labels
+   '<g font-family="Atkinson Hyperlegible, sans-serif">'+
+   '<text class="cl-t" x="300" y="345" text-anchor="middle">mitochondrion</text>'+
+   '<text class="cl-t" x="575" y="408" text-anchor="middle">nucleus</text>'+
+   '<text class="cl-t" x="780" y="250" text-anchor="middle">ribosomes on ER</text>'+
+   '<text class="cl-t" x="290" y="625" text-anchor="middle">fat storage</text>'+
+   '<text class="cl-t" x="790" y="600" text-anchor="middle">new protein</text>'+
+   '<text class="cl-t" x="800" y="110" text-anchor="middle">cell membrane</text>'+
+   '<text class="cl-s" transform="translate(30 450) rotate(-90)" text-anchor="middle">blood capillary</text></g>'+
+   // legend
+   '<g transform="translate(150 830)" font-size="19">'+
+   '<circle cx="0" cy="0" r="9" fill="#4a90d9"/><text x="16" y="6" class="cl-s" fill="#2a1017"><tspan font-weight="700">glucose</tspan> → ATP energy</text>'+
+   '<circle cx="240" cy="0" r="9" fill="#3aa36b"/><text x="256" y="6" class="cl-s"><tspan font-weight="700">amino acids</tspan> → proteins</text>'+
+   '<circle cx="470" cy="0" r="9" fill="#f2c230"/><text x="486" y="6" class="cl-s"><tspan font-weight="700">fatty acids</tspan> → membranes</text></g>'+
+   '</svg>';},
  recap:function(){
    var rows=[["Salivary amylase","Salivary glands","Mouth","Starch → maltose","~7"],["Pepsin","Stomach","Stomach","Proteins → polypeptides","~2"],["Pancreatic amylase","Pancreas","Small intestine","Starch → maltose","~8"],["Maltase / lactase","Small intestine wall","Small intestine","Maltose, lactose → glucose (+ galactose)","~8"],["Trypsin, peptidases","Pancreas, intestine wall","Small intestine","Polypeptides → amino acids","~8"],["Lipase","Pancreas","Small intestine","Fats → glycerol + fatty acids","~8"],["Bile (not an enzyme)","Liver; stored in gallbladder","Small intestine","Big fat drops → tiny droplets","—"]];
    var org=[["Mouth","Teeth chew; tongue mixes","Salivary amylase"],["Esophagus","Peristalsis","None"],["Stomach","Churning; HCl","Pepsin and HCl"],["Small intestine","Peristalsis; bile","All enzymes finish; absorbs nutrients"],["Large intestine","Moves waste","None; absorbs water"]];
@@ -544,7 +587,7 @@ function show(i,instant){
   spotlight(sc.hl);
   var c=sc.cam;setLabels(sc.labels,c[2]);
   routeEl.classList.remove("draw");void routeEl.getBBox();if(sc.route)routeEl.classList.add("draw");
-  routeEl.setAttribute("stroke-width",c[2]*0.007);
+  routeEl.setAttribute("stroke-width",c[2]*0.006);
   clearTimeout(formTimer);
   charG.setAttribute("class",sc.anim?"c-"+sc.anim:"c-idle");
   if(sc.formFrom&&!back){setForm(sc.formFrom);formTimer=setTimeout(function(){setForm(sc.form);},1700);}else setForm(sc.form);
