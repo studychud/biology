@@ -15,8 +15,8 @@
 }
 *{box-sizing:border-box}
 html,body{margin:0;height:100%;background:#2a1017;overflow:hidden;font-family:var(--f-body);color:var(--ink)}
-#fit{position:fixed;inset:0;display:grid;place-items:center}
-#stage{width:1600px;height:900px;position:relative;background:var(--paper);transform-origin:center;display:grid;grid-template-columns:920px 680px;overflow:hidden;cursor:pointer;user-select:none}
+#fit{position:fixed;inset:0}
+#stage{width:1600px;height:900px;position:absolute;left:50%;top:50%;background:var(--paper);transform-origin:center;display:grid;grid-template-columns:920px 680px;overflow:hidden;cursor:pointer;user-select:none}
 #view{position:relative;width:920px;height:900px;background:radial-gradient(circle at 50% 45%,#fff 0,#fbf6ee 70%);overflow:hidden}
 #body{position:absolute;inset:0;width:920px;height:900px;transition:opacity .6s}
 #body.off{opacity:0}
@@ -51,10 +51,10 @@ html,body{margin:0;height:100%;background:#2a1017;overflow:hidden;font-family:va
 @keyframes rise{from{opacity:0;transform:translateY(14px)}}
 .kicker{font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
 h1{font-family:var(--f-display);font-weight:400;font-size:46px;line-height:1.08;margin:0}
-h1.big{font-size:74px}
+h1.big{font-size:60px}
 .story{font-size:22px;line-height:1.5;margin:0}
 .facts{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:10px}
-.facts li{font-size:18.5px;line-height:1.4;padding:10px 14px;border-radius:10px;background:#f7f0e6;display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;opacity:0;animation:riseIn .5s forwards}
+.facts{gap:12px!important;padding-left:22px!important;list-style:disc!important}.facts li{font-size:19px;line-height:1.45}
 @keyframes riseIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 .tag{font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:999px;color:#fff;white-space:nowrap;margin-top:2px;min-width:104px;text-align:center}
 .t-mech{background:var(--mech)}.t-chem{background:var(--chem)}.t-abs{background:var(--abs)}.t-help{background:var(--help)}.t-ph{background:var(--ph)}.t-info{background:#6a4952}.t-hyd{background:#1f7a8c}.t-use{background:#a8326e}
@@ -209,7 +209,7 @@ var PATH=[[250,140],[280,150],[297,165],[299,205],[300,260],[301,330],[304,400],
 [300,575],[395,570],[410,630],[400,700],[360,735],[300,740],[297,765],[297,795],[297,840]];
 
 // ---------- character ----------
-var FACE='<circle cx="-4" cy="-3" r="2.3" fill="#fff"/><circle cx="2.4" cy="-3.4" r="2.3" fill="#fff"/><circle cx="-3.6" cy="-2.7" r="1.2" fill="#2a1017"/><circle cx="2.8" cy="-3.1" r="1.2" fill="#2a1017"/><path d="M-4 1.6q3 2.4 6 0" stroke="#2a1017" stroke-width="1" fill="none" stroke-linecap="round"/>';
+var FACE='';
 var FORMS={
  mac:'<path d="M-11 7C-13-6-2-13 10-9" fill="none" stroke="#b9791a" stroke-width="11" stroke-linecap="round"/><path d="M-11 7C-13-6-2-13 10-9" fill="none" stroke="#f7c948" stroke-width="8.4" stroke-linecap="round"/><path d="M-9.6 3C-10.4-5-3-10 7-7.6" fill="none" stroke="#fff4c4" stroke-width="1.8" stroke-linecap="round" opacity=".85"/><ellipse cx="10.4" cy="-9.2" rx="2.3" ry="4" transform="rotate(-20 10.4 -9.2)" fill="#a8680f"/><path d="M-13 1q-1 7 1 9q2 1 2-3z" fill="#f29e1f"/><g transform="translate(-3 -4)">'+FACE+'</g>',
  bolus:'<circle r="11" fill="#e9b44c" stroke="#b9791a" stroke-width="1.4"/><path d="M-7 5q2-4 6-3M3 7q3-1 5-4M-8-6q2 2 5 1" stroke="#c98a1a" stroke-width="1.8" fill="none" stroke-linecap="round"/><circle cx="6" cy="-6" r="1.3" fill="#fff6d0"/>'+FACE,
@@ -221,71 +221,71 @@ var FORMS={
 // ---------- scenes ----------
 var F=function(t,x){return [t,x];};
 var SCENES=[
-{k:"A digestion story · Baked Macaroni and Cheese", t:"Mac's Big Trip", big:true, close:"title", cam:[330,400,830], at:0, form:"mac",
+{k:"A digestion story · Baked Macaroni and Cheese", t:"The Journey of Baked Mac and Cheese", big:true, close:"title", cam:[330,400,830], at:0, form:"mac",
  story:"What happens to a holiday meal after the first bite? Follow one cheesy elbow macaroni, Mac, from the baking dish all the way through the digestive system.",
  hint:"Click anywhere (or press →) to start the story.", board:"Title. Mac the macaroni steps out of the baked mac and cheese."},
-{k:"Chapter 1 · Meet our food", t:"One forkful, three macromolecules", close:"meet", cam:[330,400,830], at:0, form:"mac",
+{k:"Chapter 1 · Meet our food", t:"What's in Mac and Cheese", close:"meet", cam:[330,400,830], at:0, form:"mac",
  story:"Fresh from the 400 °F oven, Mac is an elbow noodle coated in cheddar cheese sauce. One serving (⅙ of the dish) has 380 calories.",
  facts:[F("t-info","<b>Carbohydrates (33 g):</b> starch from the macaroni and flour; lactose (milk sugar) from the milk."),
         F("t-info","<b>Proteins (16 g):</b> casein in the cheddar and milk; gluten in the macaroni and flour."),
         F("t-info","<b>Lipids / fats (20 g):</b> butter, cheddar cheese, and milk fat."),
         F("t-hyd","These are big molecules (polymers). Mac must be broken into small monomers before the body can use him.")],
  board:"Mac and the recipe. The macromolecules in mac and cheese and which ingredients give them."},
-{k:"Chapter 2 · The map", t:"The route: about 30 feet of tube", cam:[330,400,830], at:0, form:"mac", route:true,
+{k:"Chapter 2 · The map", t:"The Digestive Path", cam:[330,400,830], at:0, form:"mac", route:true,
  labels:[["mouth",250,147,110,147],["esophagus",298,330,470,330],["liver",232,445,110,420],["gallbladder",238,483,110,480],["stomach",372,470,520,450],["pancreas",380,506,530,510],["small intestine",330,660,560,660],["large intestine",204,640,80,640],["rectum",298,760,140,760],["anus",297,793,450,800]],
  story:"Mac will travel the whole GI tract in order: <b>mouth → esophagus → stomach → small intestine → large intestine → rectum → anus</b>. The trip takes about 1 to 3 days.",
  facts:[F("t-help","The <b>liver, gallbladder, and pancreas</b> are accessory organs. They help, but food never passes through them."),
         F("t-mech","<b>Mechanical digestion:</b> physically breaking or mixing food into smaller pieces. The molecules stay the same."),
         F("t-chem","<b>Chemical digestion:</b> enzymes and acid break molecules into new, smaller molecules.")],
  board:"The map. The full digestive tract with the route drawn from mouth to anus."},
-{k:"Chapter 3 · Mouth", t:"Chomp! Mechanical digestion starts", cam:[262,150,140], at:0, form:"bolus", formFrom:"mac", hl:["mouth","teeth","tongue","salivary"],
+{k:"Chapter 3 · Mouth", t:"The Mouth: Mechanical Digestion", cam:[262,150,140], at:0, form:"bolus", formFrom:"mac", hl:["mouth","teeth","tongue","salivary"],
  labels:[["teeth",221,122,208,97],["tongue",262,152,300,118],["salivary glands",268,174,270,210]],
  story:"The fork drops Mac onto the tongue. The teeth cut and grind him into small pieces, the tongue mixes them with saliva, and everything gets rolled into a soft ball called a <b>bolus</b>.",
  facts:[F("t-mech","<b>Teeth</b> grind Mac into smaller pieces, which gives enzymes more surface area to work on."),
         F("t-mech","The water in <b>saliva</b> moistens the food; the <b>tongue</b> shapes the bolus."),
         F("t-info","Three pairs of salivary glands make saliva.")],
  board:"Mouth (mechanical). Teeth chew Mac; the tongue rolls him into a bolus."},
-{k:"Chapter 3 · Mouth", t:"Amylase snips the starch", close:"hydro", cam:[262,150,140], at:0, form:"bolus", hl:["mouth","salivary"],
+{k:"Chapter 3 · Mouth", t:"The Mouth: Chemical Digestion", close:"hydro", cam:[262,150,140], at:0, form:"bolus", hl:["mouth","salivary"],
  story:"While Mac is still being chewed, an enzyme in saliva called <b>salivary amylase</b> starts cutting the long starch chains in the noodle.",
  facts:[F("t-chem","<b>Salivary amylase</b> breaks starch (a polysaccharide) into maltose (2-sugar pieces)."),
         F("t-hyd","<b>Hydrolysis</b> means “splitting with water.” A water molecule is added to the bond between two sugars: H goes to one side, OH to the other, and the bond breaks."),
         F("t-ph","The mouth is about <b>pH 7</b> (neutral), which is where salivary amylase works best.")],
  board:"Mouth (chemical). Close-up: amylase and water split starch by hydrolysis."},
-{k:"Chapter 4 · Pharynx", t:"Down the right pipe", cam:[290,180,160], at:2, form:"bolus", hl:["pharynx","epiglottis","esophagus","trachea","larynx"],
+{k:"Chapter 4 · Pharynx", t:"The Pharynx", cam:[290,180,160], at:2, form:"bolus", hl:["pharynx","epiglottis","esophagus","trachea","larynx"],
  labels:[["pharynx",300,152,345,128],["epiglottis",285,176,345,168],["trachea (air)",281,238,232,240],["esophagus (food)",303,228,350,215]],
- story:"Gulp! The tongue pushes the bolus back into the <b>pharynx</b> (throat). The <b>epiglottis</b> flaps down over the trachea, so Mac goes down the esophagus instead of into the lungs.",
+ story:"The tongue pushes the bolus back into the <b>pharynx</b> (throat). The <b>epiglottis</b> flaps down over the trachea, so Mac goes down the esophagus instead of into the lungs.",
  facts:[F("t-mech","Swallowing starts <b>peristalsis</b>, the muscle waves that move food."),
         F("t-info","Talking with your mouth full can open the epiglottis. That's how food “goes down the wrong pipe.”"),
         F("t-chem","No new chemical digestion here, but amylase keeps working inside the bolus.")],
  board:"Pharynx. The epiglottis covers the trachea so the bolus goes into the esophagus."},
-{k:"Chapter 5 · Esophagus", t:"Peristalsis: the muscle wave", cam:[302,330,270], at:7, form:"bolus", anim:"squeeze", hl:["esophagus"],
+{k:"Chapter 5 · Esophagus", t:"The Esophagus", cam:[302,330,270], at:7, form:"bolus", anim:"squeeze", hl:["esophagus"],
  labels:[["esophagus",300,300,375,280],["esophageal sphincter",316,452,410,420]],
- story:"The esophagus is a muscular tube about 10 inches long. Rings of muscle squeeze behind the bolus in a wave and push Mac down to the stomach in about 5 to 8 seconds. It works even if you're upside down!",
+ story:"The esophagus is a muscular tube about 10 inches long. Rings of muscle squeeze behind the bolus in a wave and push Mac down to the stomach in about 5 to 8 seconds.",
  facts:[F("t-mech","<b>Peristalsis:</b> wave-like muscle contractions push the bolus along."),
         F("t-chem","No chemical digestion happens in the esophagus."),
         F("t-info","The <b>esophageal sphincter</b> opens to let Mac in, then closes so stomach acid can't come back up (heartburn).")],
  board:"Esophagus. Peristalsis squeezes the bolus down to the stomach."},
-{k:"Chapter 6 · Stomach", t:"The churning tank", cam:[340,490,175], at:9, form:"chyme", formFrom:"bolus", anim:"churn", hl:["stomach"],
+{k:"Chapter 6 · Stomach", t:"The Stomach: Mechanical Digestion", cam:[340,490,175], at:9, form:"chyme", formFrom:"bolus", anim:"churn", hl:["stomach"],
  labels:[["stomach",372,470,385,420],["pyloric sphincter",292,505,285,560]],
  story:"Three layers of stomach muscle churn and squeeze Mac for 2 to 4 hours. Mixed with gastric juice, the bolus melts into a thick soup called <b>chyme</b>.",
  facts:[F("t-mech","<b>Churning</b> (peristalsis) mixes and mashes the food."),
         F("t-mech","<b>Hydrochloric acid (HCl)</b> helps physically break the bolus apart."),
         F("t-info","Folds called <b>rugae</b> let the stomach stretch to hold a big holiday meal.")],
  board:"Stomach (mechanical). Churning turns the bolus into chyme."},
-{k:"Chapter 6 · Stomach", t:"Acid and pepsin vs. cheese protein", cam:[340,490,175], at:10, form:"chyme", anim:"churn", hl:["stomach"],
+{k:"Chapter 6 · Stomach", t:"The Stomach: Chemical Digestion", cam:[340,490,175], at:10, form:"chyme", anim:"churn", hl:["stomach"],
  labels:[["pH 2 (very acidic)",360,480,380,425]],
  story:"The stomach lining releases <b>hydrochloric acid</b>, making it very acidic: about <b>pH 2</b>. The acid switches on <b>pepsin</b>, which starts chopping the casein protein from the cheddar and milk into shorter chains.",
  facts:[F("t-chem","<b>Pepsin</b> breaks proteins into polypeptides (shorter chains) by hydrolysis."),
         F("t-ph","Salivary amylase <b>stops working</b> here: the acid changes its shape."),
         F("t-info","HCl kills bacteria; <b>mucus</b> protects the stomach from its own acid. The <b>pyloric sphincter</b> lets chyme out a little at a time.")],
  board:"Stomach (chemical). HCl makes pH 2; pepsin starts protein digestion."},
-{k:"Science close-up · pH", t:"Why pH matters to enzymes", close:"ph", cam:[340,490,175], at:10, form:"chyme",
+{k:"Science close-up · pH", t:"pH and Enzymes", close:"ph", cam:[340,490,175], at:10, form:"chyme",
  story:"Every enzyme has an <b>active site</b> with a shape that fits its molecule like a key in a lock. pH changes that shape. Each enzyme works fastest at its own pH; too far off and it slows down or stops (denatures).",
  facts:[F("t-ph","<b>Mouth, pH 7:</b> salivary amylase works best."),
         F("t-ph","<b>Stomach, pH 2:</b> pepsin works best; amylase stops."),
         F("t-ph","<b>Small intestine, pH 8:</b> pancreatic enzymes work best. Bicarbonate from the pancreas neutralizes the stomach acid.")],
  board:"pH close-up. The pH scale and enzyme shape: right pH fits, wrong pH doesn't."},
-{k:"Chapter 7 · Helper organs", t:"The liver, gallbladder and pancreas", cam:[295,495,240], at:12, form:"chyme", hl:["liver","gall","pancreas"],
+{k:"Chapter 7 · Helper organs", t:"The Accessory Organs", cam:[295,495,240], at:12, form:"chyme", hl:["liver","gall","pancreas"],
  labels:[["liver",232,445,215,398],["gallbladder",238,483,200,515],["pancreas",370,510,375,600],["duodenum",246,535,265,605]],
  story:"Mac squirts through the pyloric sphincter into the <b>duodenum</b>, the first part of the small intestine. Sensing all that butter and cheese fat, the helper organs send their juices in through ducts.",
  facts:[F("t-help","<b>Liver</b> makes bile. It also filters the blood and stores sugar as glycogen."),
@@ -293,46 +293,46 @@ var SCENES=[
         F("t-help","<b>Pancreas</b> makes enzymes for all three macromolecules, plus bicarbonate to neutralize acid."),
         F("t-info","Food never travels through these three organs.")],
  board:"Accessory organs. The liver, gallbladder and pancreas send bile and enzymes to the duodenum."},
-{k:"Chapter 8 · Small intestine", t:"Bile breaks up the fat", close:"bile", cam:[295,495,240], at:13, form:"chyme",
+{k:"Chapter 8 · Small intestine", t:"Bile and Fat", close:"bile", cam:[295,495,240], at:13, form:"chyme",
  story:"The fat from the butter and cheddar clumps into big greasy drops that won't mix with water. <b>Bile</b> works like dish soap: it breaks the big drops into tiny droplets. This is called <b>emulsification</b>.",
  facts:[F("t-mech","Bile is <b>mechanical</b> digestion. The fat molecules don't change; there are just more, smaller drops."),
         F("t-chem","More surface area means <b>lipase</b> can digest the fat much faster."),
         F("t-mech","Peristalsis keeps mixing the chyme.")],
  board:"Bile close-up. A big fat drop breaks into many small droplets."},
-{k:"Chapter 8 · Small intestine", t:"Chemical digestion finishes", close:"enz", cam:[310,620,250], at:15, form:"tiny", formFrom:"chyme",
+{k:"Chapter 8 · Small intestine", t:"The Small Intestine: Chemical Digestion", close:"enz", cam:[310,620,250], at:15, form:"tiny", formFrom:"chyme",
  story:"Here the enzymes finish the job. Each one uses <b>hydrolysis</b> to break one kind of macromolecule into its building blocks.",
  facts:[F("t-chem","<b>Amylase and maltase:</b> starch → maltose → glucose. <b>Lactase:</b> lactose → glucose and galactose."),
         F("t-chem","<b>Trypsin and peptidases:</b> proteins → amino acids."),
         F("t-chem","<b>Lipase:</b> fats (triglycerides) → glycerol and fatty acids."),
         F("t-info","Enzyme names end in <b>-ase</b> and are often named for what they break down (lactose → lactase).")],
  board:"Enzymes close-up. Hydrolysis breaks each macromolecule into its monomers."},
-{k:"Chapter 9 · Absorption", t:"Through the villi", close:"villus", cam:[310,640,250], at:18, form:"tiny", hl:["small"],
+{k:"Chapter 9 · Absorption", t:"Absorption", close:"villus", cam:[310,640,250], at:18, form:"tiny", hl:["small"],
  story:"Now Mac is just tiny molecules. In the jejunum and ileum, the wall is covered with millions of finger-like <b>villi</b>, and each villus has <b>microvilli</b>. All those folds give a huge surface area for absorption.",
  facts:[F("t-abs","<b>Glucose and amino acids</b> pass into the capillaries (blood)."),
         F("t-abs","<b>Fatty acids and glycerol</b> go into the lacteal (lymph) and join the blood later."),
         F("t-help","Blood from the intestine goes to the <b>liver</b> first, which stores extra glucose as glycogen.")],
  board:"Villus close-up. Nutrients pass into the capillaries and the lacteal."},
-{k:"Chapter 10 · Cell use", t:"Mac becomes part of you", close:"cell", cam:[310,640,250], at:19, form:"tiny",
+{k:"Chapter 10 · Cell use", t:"How Cells Use Nutrients", close:"cell", cam:[310,640,250], at:19, form:"tiny",
  story:"The blood carries Mac's molecules to every cell in the body, and each one gets put to work.",
  facts:[F("t-use","<b>Energy:</b> glucose goes through cellular respiration in the mitochondria and makes ATP to move, think and stay warm."),
         F("t-use","<b>Growth and repair:</b> ribosomes join amino acids into new proteins for muscle, enzymes and antibodies."),
         F("t-use","<b>Building and storage:</b> fatty acids and glycerol build cell membranes and store energy."),
         F("t-info","Bonus: calcium from the cheese and milk builds bones and teeth.")],
  board:"Cell close-up. Glucose powers mitochondria; amino acids build proteins; fats build membranes."},
-{k:"Chapter 11 · Large intestine", t:"The water recycling plant", cam:[305,640,320], at:28, form:"waste", formFrom:"tiny", hl:["large"],
+{k:"Chapter 11 · Large intestine", t:"The Large Intestine", cam:[305,640,320], at:28, form:"waste", formFrom:"tiny", hl:["large"],
  labels:[["large intestine (colon)",204,640,195,500],["rectum",298,760,380,775]],
  story:"What's left (water, fiber and undigested bits) moves into the <b>large intestine</b>. It's about 6 feet long and 3 inches wide. <b>Digestion is already finished</b> by this point.",
  facts:[F("t-abs","Absorbs <b>water and salts</b> back into the blood, turning liquid waste into solid feces."),
         F("t-info","Helpful <b>bacteria</b> ferment leftovers and make vitamins like vitamin K."),
         F("t-mech","Slow muscle contractions move the waste along over 12 to 36 hours.")],
  board:"Large intestine. Water and salts are absorbed and waste becomes solid."},
-{k:"Chapter 12 · Rectum and anus", t:"The end of the line", cam:[300,760,170], at:33, form:"waste", hl:["rectum","anus"],
+{k:"Chapter 12 · Rectum and anus", t:"The Rectum and Anus", cam:[300,760,170], at:33, form:"waste", hl:["rectum","anus"],
  labels:[["rectum",298,760,350,735],["anus",297,793,250,812]],
  story:"Feces is stored in the <b>rectum</b> until it's time to go. Sphincter muscles in the <b>anus</b> control when the waste leaves the body.",
  facts:[F("t-info","Mac's useful parts already became energy, new proteins and cell membranes. Only the leftovers leave."),
         F("t-info","Total trip time: about 24 to 72 hours, mouth to anus.")],
  board:"Rectum and anus. The leftovers leave the body; the rest of Mac stays as part of you."},
-{k:"Review", t:"The whole trip on one page", close:"recap", cam:[330,400,830], at:33, form:"waste",
+{k:"Review", t:"Review", close:"recap", cam:[330,400,830], at:33, form:"waste",
  story:"Mac went from a cheesy noodle to glucose, amino acids, glycerol and fatty acids, and then into your cells for energy, growth and repair.",
  facts:[F("t-info","<b>Recipe and nutrition:</b> Pillsbury Kitchens, “Classic Baked Macaroni and Cheese.”"),
         F("t-info","<b>Organ illustrations:</b> Mariana Ruiz (LadyofHats), Wikimedia Commons, public domain."),
@@ -346,7 +346,7 @@ var NS="http://www.w3.org/2000/svg";
 var body=$("#body"), card=$("#card"), close=$("#close"), lbls=$("#lbls"), charG=$("#char"), cin=charG.querySelector(".cin");
 (function fillArt(){var g=body.querySelector(".art"),A=document.getElementById("an-art");Array.prototype.forEach.call(A.childNodes,function(n){g.appendChild(n.cloneNode(true));});})();
 
-function fit(){var s=Math.min(innerWidth/1600,innerHeight/900);$("#stage").style.transform="scale("+s+")";}
+function fit(){var s=Math.min(innerWidth/1600,innerHeight/900);$("#stage").style.transform="translate(-50%,-50%) scale("+s+")";}
 addEventListener("resize",fit);fit();
 
 var PARTS={mouth:["mouth","teeth","tongue"],small:["small"]};
@@ -451,19 +451,19 @@ var CLOSE={
  ph:function(){
    var x=function(p){return 90+p/14*740;},ticks="";
    for(var p=0;p<=14;p++)ticks+='<text x="'+x(p)+'" y="255" text-anchor="middle" font-size="17" fill="#2a1017">'+p+'</text>';
-   var pin=function(p,col,t1,t2,y,d){return '<g class="fade" style="animation-delay:'+d+'s"><path d="M'+x(p)+' 205V'+(y-28)+'" stroke="'+col+'" stroke-width="3"/><circle cx="'+x(p)+'" cy="205" r="9" fill="'+col+'" stroke="#fff" stroke-width="3"/><text class="cl-t" x="'+x(p)+'" y="'+y+'" text-anchor="middle" fill="'+col+'">'+t1+'</text><text class="cl-s" x="'+x(p)+'" y="'+(y+26)+'" text-anchor="middle">'+t2+'</text></g>';};
-   var enz=function(cx,notch){return '<path d="M'+(cx-110)+' 760C'+(cx-110)+' 690 '+(cx-60)+' 650 '+(cx-40)+' 650'+notch+(cx+40)+' 650C'+(cx+60)+' 650 '+(cx+110)+' 690 '+(cx+110)+' 760S'+(cx+60)+' 830 '+cx+' 830 '+(cx-110)+' 800 '+(cx-110)+' 760Z" fill="#8e5bb5" stroke="#3d1d55" stroke-width="3"/>';};
+   var pin=function(p,col,t1,t2,y,d,lx){lx=lx||x(p);return '<g class="fade" style="animation-delay:'+d+'s"><path fill="none" d="M'+x(p)+' 228V265L'+lx+' '+(y-28)+'" stroke="'+col+'" stroke-width="3"/><circle cx="'+x(p)+'" cy="205" r="9" fill="'+col+'" stroke="#fff" stroke-width="3"/><text class="cl-t" x="'+lx+'" y="'+y+'" text-anchor="middle" fill="'+col+'">'+t1+'</text><text class="cl-s" x="'+lx+'" y="'+(y+26)+'" text-anchor="middle">'+t2+'</text></g>';};
+   var enz=function(cx,bad){var n=bad?'L'+(cx-50)+' 650 '+(cx-5)+' 700 '+(cx+45)+' 668 '+(cx+30)+' 650':'L'+(cx-37)+' 650 '+(cx-37)+' 698 '+(cx+37)+' 698 '+(cx+37)+' 650';return '<path d="M'+(cx-110)+' 680Q'+(cx-110)+' 650 '+(cx-80)+' 650'+n+'L'+(cx+80)+' 650Q'+(cx+110)+' 650 '+(cx+110)+' 680L'+(cx+110)+' 800Q'+(cx+110)+' 830 '+(cx+80)+' 830L'+(cx-80)+' 830Q'+(cx-110)+' 830 '+(cx-110)+' 800Z" fill="#8e5bb5" stroke="#3d1d55" stroke-width="3" stroke-linejoin="round"/>';};
    return '<svg viewBox="0 0 920 900" width="920" height="900"><defs><linearGradient id="phg"><stop offset="0" stop-color="#d7301f"/><stop offset=".3" stop-color="#f39c12"/><stop offset=".5" stop-color="#5cb85c"/><stop offset=".75" stop-color="#2e86c1"/><stop offset="1" stop-color="#5b2c8f"/></linearGradient></defs>'+
    '<text class="cl-title" x="460" y="90" text-anchor="middle">The pH scale</text>'+
    '<text class="cl-s" x="90" y="160">acidic</text><text class="cl-s" x="460" y="160" text-anchor="middle">neutral</text><text class="cl-s" x="830" y="160" text-anchor="end">basic</text>'+
    '<rect x="90" y="185" width="740" height="40" rx="20" fill="url(#phg)"/>'+ticks+
-   pin(2,"#c0392b","Stomach ~2","pepsin",320,.4)+pin(7,"#2e7d32","Mouth ~7","salivary amylase",400,.9)+pin(8,"#1f5f99","Small int. ~8","pancreatic enzymes",320,1.4)+
+   pin(2,"#c0392b","Stomach ~2","pepsin",340,.4)+pin(7,"#2e7d32","Mouth ~7","salivary amylase",340,.9,x(7)-90)+pin(8,"#1f5f99","Small intestine ~8","pancreatic enzymes",340,1.4,x(8)+130)+
    '<line x1="460" y1="520" x2="460" y2="870" stroke="#eadfd3" stroke-width="2"/>'+
    '<text class="cl-t" x="250" y="560" text-anchor="middle" fill="#24704f">Right pH: it fits</text><text class="cl-t" x="680" y="560" text-anchor="middle" fill="#b4442c">Wrong pH: shape changes</text>'+
-   '<g class="fit"><rect x="215" y="610" width="70" height="44" rx="6" fill="#4a90d9" stroke="#1d4a78" stroke-width="3"/></g>'+enz(250,"L"+(250-35)+" 650 "+(250-35)+" 654 "+(250+35)+" 654 "+(250+35)+" 650")+
-   '<text x="250" y="760" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">enzyme</text>'+
-   '<g class="bounce"><rect x="645" y="610" width="70" height="44" rx="6" fill="#4a90d9" stroke="#1d4a78" stroke-width="3"/></g>'+enz(680,"Q 680 700 "+(680+40)+" 650")+
-   '<text x="680" y="760" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">denatured</text>'+
+   '<g class="fit"><rect x="215" y="653" width="70" height="44" rx="6" fill="#4a90d9" stroke="#1d4a78" stroke-width="3"/></g>'+enz(250,false)+
+   '<text x="250" y="785" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">enzyme</text>'+
+   '<g class="bounce"><rect x="645" y="653" width="70" height="44" rx="6" fill="#4a90d9" stroke="#1d4a78" stroke-width="3"/></g>'+enz(680,true)+
+   '<text x="680" y="785" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">denatured</text>'+
    '<text class="cl-s" x="250" y="868" text-anchor="middle">active site fits → reaction is fast</text><text class="cl-s" x="680" y="868" text-anchor="middle">no fit → slows or stops</text></svg>';},
  bile:function(){
    var r=rand(3),drops="";
@@ -536,8 +536,8 @@ function show(i,instant){
   if(i<0||i>=SCENES.length)return;
   var sc=SCENES[i],back=i<cur;cur=i;
   // card
-  var h='<div class="kicker">'+sc.k+'</div><h1'+(sc.big?' class="big"':'')+'>'+sc.t+'</h1><p class="story">'+sc.story+'</p>';
-  if(sc.facts)h+='<ul class="facts">'+sc.facts.map(function(f,j){return '<li style="animation-delay:'+(.5+j*.45)+'s"><span class="tag '+f[0]+'">'+({"t-mech":"Mechanical","t-chem":"Chemical","t-abs":"Absorption","t-help":"Helper organ","t-ph":"pH","t-info":"Fact","t-hyd":"Hydrolysis","t-use":"Cell use"})[f[0]]+'</span><span>'+f[1]+'</span></li>';}).join("")+'</ul>';
+  var h='<h1'+(sc.big?' class="big"':'')+'>'+sc.t+'</h1><p class="story">'+sc.story+'</p>';
+  if(sc.facts)h+='<ul class="facts">'+sc.facts.map(function(f){return '<li>'+f[1]+'</li>';}).join("")+'</ul>';
   if(sc.hint)h+='<p class="hint">'+sc.hint+'</p>';
   card.innerHTML=h;
   // stage
